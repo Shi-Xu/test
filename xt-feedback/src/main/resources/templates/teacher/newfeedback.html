@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<meta name="description" content="" />
+		<meta name="author" content="" />
+		<title>教师课程管理</title>
+		<!--favicon-->
+		<link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+		<!-- simplebar CSS-->
+		<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+		<!-- Bootstrap core CSS-->
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<!-- animate CSS-->
+		<link href="assets/css/animate.css" rel="stylesheet" type="text/css" />
+		<!-- Icons CSS-->
+		<link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+		<!-- Sidebar CSS-->
+		<link href="assets/css/sidebar-menu.css" rel="stylesheet" />
+		<!-- Custom Style-->
+		<link href="assets/css/app-style.css" rel="stylesheet" />
+
+	</head>
+
+	<body>
+
+		<!-- start loader -->
+		<div id="pageloader-overlay" class="visible incoming">
+			<div class="loader-wrapper-outer">
+				<div class="loader-wrapper-inner">
+					<div class="loader"></div>
+				</div>
+			</div>
+		</div>
+		<!-- end loader -->
+
+		<!-- Start wrapper-->
+		<div id="wrapper">
+
+			<!--侧边栏开始-->
+			<div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+				<div class="brand-logo bg-bar">
+					<a href="index1.html">
+						<h5 class="logo-text">课程调查管理系统</h5>
+					</a>
+				</div>
+				<!-- 用户信息 -->
+				<div class="user-details">
+					<div class="media align-items-center user-pointer collapsed" data-toggle="collapse" data-target="#user-dropdown">
+						<div class="avatar"><i class="fa fa-user fa-2x mr-3 text-"></i></div>
+						<div class="media-body">
+							<h6 class="side-user-name">Amy</h6>
+						</div>
+					</div>
+					<div id="user-dropdown" class="collapse">
+						<ul class="user-setting-menu">
+							<li><a href="javaScript:void();"><i class="icon-power"></i> 注销</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- 用户信息结束 -->
+				<ul class="sidebar-menu do-nicescrol">
+					<li class="sidebar-header">教师课程管理</li>
+					<li>
+						<a href="index1.html" class="waves-effect">
+							<i class="zmdi zmdi-view-dashboard"></i> <span>课程选择</span><i class="fa fa-angle-left pull-right"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!--侧边栏结束-->
+
+			<!--顶部头开始-->
+			<header class="topbar-nav">
+				<nav class="navbar navbar-expand  fixed-top">
+					<!-- 左侧缩进 -->
+					<ul class="navbar-nav mr-auto align-items-center">
+						<li class="nav-item">
+							<a class="nav-link toggle-menu" href="javascript:void();">
+								<i class="icon-menu menu-icon"></i>
+							</a>
+						</li>
+					</ul>
+
+					<ul class="navbar-nav align-items-center right-nav-link">
+						<li class="nav-item">
+							<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+								<span class="user-profile"><i class=" fa fa-user text-warning"></i></span>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li class="dropdown-item"><a href="#"><i class="icon-power mr-2"></i> 注销</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<!--顶部头结束-->
+
+			<div class="clearfix"></div>
+
+			<div class="content-wrapper">
+				<div class="container-fluid">
+					<!-- 导航说明栏开始 -->
+					<div class="row pt-2 pb-2 mb-2">
+						<div class="col-sm-9">
+							<h4 class="page-title">xx课程调查反馈</h4>
+						</div>
+					</div>
+					<!-- 导航说明栏结束 -->
+
+					<!-- 填写导出 -->
+					<div class="row">
+						<div class="col-12 col-lg-6 col-xl-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="media">
+										<div class="align-self-center w-circle-icon rounded bg-facebook mr-2">
+											<i class="fa fa-star text-white"></i>
+										</div>
+										<div class="media-body text-left">
+											<h4 class="text-facebook mb-0">243</h4>
+											<span class="text-facebook">已填写调查问卷人数</span>
+										</div>
+										<button type="button" class="btn btn-outline-primary waves-effect waves-light">导出已填问卷
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 填写导出结束 -->
+
+					<button type="button" id="download" class="btn btn-primary">导出以下三个图表</button>
+					<div id="card">
+						<!-- 某课程必选题选项柱状 -->
+						<div class="row">
+							<div class="col-lg-12 col-xl-12">
+								<div class="card" id="card1">
+									<div class="card-header">
+										<div class="row">
+											<div class="col-xs-12 col-lg-6">xx课程调查选项占比（单位：%）</div>
+											<div class="col-lg-6">
+												<button type="button" id="download1" class="btn btn-outline-primary waves-effect waves-light pull-right">导出
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="card-content">
+										<div class="row row-group m-0">
+											<div class="col-12 col-lg-12 col-xl-12">
+												<div class="card-body">
+													<canvas id="xx-barChart" width="80" height="30"></canvas>
+												</div>
+											</div>
+											<div class="col-12 col-lg-12 col-xl-12">
+												<div class="card-body">
+													<div class="table-responsive">
+														<table class="table">
+															<thead>
+																<tr>
+																	<td>
+																		<div class="icheck-material-primary my-0">
+																		</div>
+																	</td>
+																	<td>必选1</td>
+																	<td>必选2</td>
+																	<td>必选3</td>
+																	<td>必选4</td>
+																	<td>必选5</td>
+																	<td>必选6</td>
+																	<td>必选7</td>
+																	<td>必选8</td>
+																	<td>必选9</td>
+																	<td>必选10</td>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>非常认同（个）</td>
+																	<td>150</td>
+																	<td>120</td>
+																	<td>165</td>
+																	<td>158</td>
+																	<td>132</td>
+																	<td>132</td>
+																	<td>132</td>
+																	<td>132</td>
+																	<td>132</td>
+																	<td>132</td>
+																</tr>
+																<tr>
+																	<td>比较认同（个）</td>
+																	<td>120</td>
+																	<td>120</td>
+																	<td>120</td>
+																	<td>120</td>
+																	<td>120</td>
+																	<td>120</td>
+																	<td>120</td>
+																	<td>120</td>
+																	<td>120</td>
+																	<td>50</td>
+																</tr>
+																<tr>
+																	<td>一般认同（个）</td>
+																	<td>120</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																</tr>
+																<tr>
+																	<td>基本不认同（个）</td>
+																	<td>120</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																</tr>
+																<tr>
+																	<td>非常不认同（个）</td>
+																	<td>120</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																	<td>50</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- 某课程必选题选项个数柱状结束 -->
+
+						<!-- 竖形柱图 -->
+						<div class="card" id="card2">
+							<div class="card-header">
+								<div class="row">
+									<div class="col-lg-6">xx课程认同选项占比（单位：%）</div>
+									<div class="col-lg-6">
+										<button type="button" id="download2" class="btn btn-outline-primary waves-effect waves-light pull-right">导出
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="card-content">
+								<div class="row row-group m-0">
+									<div class="col-12 col-xl-12">
+										<div class="card-body course-chart">
+											<canvas id="xx-longbar" height="120"></canvas>
+										</div>
+									</div>
+								</div>
+								<!--End Row-->
+							</div>
+						</div>
+						<!-- 竖形柱图结束 -->
+
+						<!-- 任选题 -->
+						<div class="card" id="card3">
+							<div class="card-content">
+								<div class="card-header">
+									<div class="row">
+											<div class="col-xs-12 col-lg-6">xx课程任选项统计结果（单位：%）</div>
+										<div class="col-lg-6">
+											<button type="button" id="download3" class="btn btn-outline-primary waves-effect waves-light pull-right">导出
+											</button>
+										</div>
+									</div>
+								</div>
+								<div class="row row-group m-0">
+									<div class="col-lg-12 col-xl-4">
+										<div class="chose-header">任选A选项个数（单位：个）</div>
+										<div class="card-body">
+											<canvas id="xx-chosebarChartA" width="80"></canvas>
+										</div>
+									</div>
+									<div class="col-lg-12 col-xl-4">
+										<div class="chose-header">任选B选项个数（单位：个）</div>
+										<div class="card-body">
+											<canvas id="xx-chosebarChartB" width="80"></canvas>
+										</div>
+									</div>
+									<div class="col-lg-12 col-xl-4">
+										<div class="chose-header">任选C选项个数（单位：个）</div>
+										<div class="card-body">
+											<canvas id="xx-chosebarChartC" width="80"></canvas>
+										</div>
+									</div>
+								</div>
+								<div class="row row-group m-0">
+									<div class="col-lg-6 col-xl-4">
+										<div class="chose-header">任选D选项个数（单位：个）</div>
+										<div class="card-body">
+											<canvas id="xx-chosebarChartD" width="80"></canvas>
+										</div>
+									</div>
+									<div class="col-lg-12 col-xl-4">
+										<div class="chose-header">任选E选项个数（单位：个）</div>
+										<div class="card-body">
+											<canvas id="xx-chosebarChartE" width="80"></canvas>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-lg-12 col-xl-12">
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table">
+												<thead>
+													<tr>
+														<td>
+															<div class="icheck-material-primary my-0">
+															</div>
+														</td>
+														<td>任选1</td>
+														<td>任选2</td>
+														<td>任选3</td>
+														<td>任选4</td>
+														<td>任选5</td>
+														<td>任选6</td>
+														<td>任选7</td>
+														<td>任选8</td>
+														<td>任选9</td>
+														<td>任选10</td>
+														<td>任选11</td>
+														<td>任选12</td>
+														<td>任选13</td>
+														<td>任选14</td>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>任选题A（个）</td>
+														<td>150</td>
+														<td>120</td>
+														<td>165</td>
+														<td>158</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+													</tr>
+													<tr>
+														<td>任选题B（个）</td>
+														<td>150</td>
+														<td>120</td>
+														<td>165</td>
+														<td>158</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+													</tr>
+													<tr>
+														<td>任选题C（个）</td>
+														<td>150</td>
+														<td>120</td>
+														<td>165</td>
+														<td>158</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+													</tr>
+													<tr>
+														<td>任选题D（个）</td>
+														<td>150</td>
+														<td>120</td>
+														<td>165</td>
+														<td>158</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+														<td>132</td>
+													</tr>
+													<tr>
+														<td>任选题E（个）</td>
+														<td>150</td>
+														<td>120</td>
+														<td>165</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 任选题结束 -->
+
+					</div>
+
+				</div>
+
+			</div>
+			<!--End content-wrapper-->
+			<!--Start Back To Top Button-->
+			<a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+			<!--End Back To Top Button-->
+
+			<!--Start footer-->
+			<footer class="footer">
+				<div class="container">
+					<div class="text-center">
+						Copyright © 2018 <a href="https://www.dlnu.edu.cn">大连民族大学</a>
+					</div>
+				</div>
+			</footer>
+			<!--End footer-->
+
+
+		</div>
+		<!--End wrapper-->
+
+
+		<!-- Bootstrap core JavaScript-->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<!-- simplebar js -->
+		<script src="assets/plugins/simplebar/js/simplebar.js"></script>
+		<!-- sidebar-menu js -->
+		<script src="assets/js/sidebar-menu.js"></script>
+
+		<!-- Custom scripts -->
+		<script src="assets/js/app-script.js"></script>
+
+		<!-- Chart JS -->
+		<script src="assets/plugins/Chart.js/Chart.min.js"></script>
+		<script src="assets/plugins/Chart.js/chartjs-script.js"></script>
+
+		<!-- fb-index1 js -->
+		<script src="assets/js/index3.js"></script>
+		<script src="assets/js/chartpdf-print.js"></script>
+
+		<script src="assets/js/jspdf.debug.js"></script>
+		<script src="assets/js/html2canvas.js"></script>
+
+		<script type="text/javascript">
+			// $(function () {
+			//     $(document).on("click", "#download", function () {
+
+			//         html2canvas(document.getElementById("card2"), {
+			//             dpi: 172,//导出pdf清晰度
+			//             onrendered: function (canvas) {
+			//                 let contentWidth = canvas.width;
+			//                 let contentHeight = canvas.height;
+
+			//                 //一页pdf显示html页面生成的canvas高度;
+			//                 let pageHeight = contentWidth / 592.28 * 861.89;
+			//                 //未生成pdf的html页面高度
+			//                 let leftHeight = contentHeight;
+			//                 //pdf页面偏移
+			//                 let position = 0;
+			//                 //html页面生成的canvas在pdf中图片的宽高（a4纸的尺寸[595.28,841.89]）
+			//                 let imgWidth = 595.28;
+			//                 let imgHeight = 592.28 / contentWidth * contentHeight;
+
+			//                 let pageData = canvas.toDataURL('image/jpeg', 1.0);
+			//                 let pdf = new jsPDF('', 'pt', 'a4');
+
+			//                 //有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
+			//                 //当内容未超过pdf一页显示的范围，无需分页
+			//                 if (leftHeight < pageHeight) {
+			//                     pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight);
+			//                 } else {
+			//                     while (leftHeight > 0) {
+			//                         pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
+			//                         leftHeight -= pageHeight;
+			//                         position -= 861.89;
+			//                         //避免添加空白页
+			//                         if (leftHeight > 0) {
+			//                             pdf.addPage();
+			//                         }
+			//                     }
+			//                 }
+			//                 pdf.save('content.pdf');
+			//             },
+			//             //背景设为白色（默认为黑色）
+			//             background: "#fff"
+			//         })
+			//     });
+			// });
+		</script>
+	</body>
+</html>

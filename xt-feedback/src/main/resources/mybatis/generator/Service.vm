@@ -1,0 +1,13 @@
+package ${package_name}.service;
+
+import com.xt.feedback.common.base.BaseService;
+import ${package_name}.dao.model.${DOName};
+import ${package_name}.dao.model.${DOName}Example;
+
+/**
+* ${model}Service接口
+* Created by liteng on ${ctime}.
+*/
+public interface ${model}Service extends BaseService<${DOName}, ${DOName}Example> {
+
+}

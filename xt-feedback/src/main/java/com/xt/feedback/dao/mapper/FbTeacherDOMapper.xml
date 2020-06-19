@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.feedback.dao.mapper.FbTeacherDOMapper">
+  <resultMap id="BaseResultMap" type="com.xt.feedback.dao.model.FbTeacherDO">
+    <id column="tch_teacher_id" jdbcType="INTEGER" property="teacherId" />
+    <result column="tch_job_number" jdbcType="VARCHAR" property="jobNumber" />
+    <result column="tch_tch_name" jdbcType="VARCHAR" property="tchName" />
+    <result column="tch_age" jdbcType="TINYINT" property="age" />
+    <result column="tch_degree" jdbcType="VARCHAR" property="degree" />
+    <result column="tch_title" jdbcType="VARCHAR" property="title" />
+    <result column="tch_grad_university" jdbcType="VARCHAR" property="gradUniversity" />
+    <result column="tch_grad_major" jdbcType="VARCHAR" property="gradMajor" />
+    <result column="tch_experience" jdbcType="VARCHAR" property="experience" />
+    <result column="tch_entry_date" jdbcType="DATE" property="entryDate" />
+    <result column="tch_political_affiliation" jdbcType="VARCHAR" property="politicalAffiliation" />
+    <result column="tch_department" jdbcType="VARCHAR" property="department" />
+    <result column="tch_native_place" jdbcType="VARCHAR" property="nativePlace" />
+    <result column="tch_nation" jdbcType="VARCHAR" property="nation" />
+    <result column="tch_remark" jdbcType="VARCHAR" property="remark" />
+    <result column="tch_locked" jdbcType="TINYINT" property="locked" />
+    <result column="tch_orders" jdbcType="BIGINT" property="orders" />
+    <result column="tch_ctime" jdbcType="BIGINT" property="ctime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <if test="resultColumns != null">
+      <foreach collection="resultColumns.columns" item="item" separator=",">
+        tch.${item} as tch_${item}
+      </foreach>
+    </if>
+    <if test="resultColumns == null">
+      tch.teacher_id as tch_teacher_id, tch.job_number as tch_job_number, tch.tch_name as tch_tch_name, 
+      tch.age as tch_age, tch.degree as tch_degree, tch.title as tch_title, tch.grad_university as tch_grad_university, 
+      tch.grad_major as tch_grad_major, tch.experience as tch_experience, tch.entry_date as tch_entry_date, 
+      tch.political_affiliation as tch_political_affiliation, tch.department as tch_department, 
+      tch.native_place as tch_native_place, tch.nation as tch_nation, tch.remark as tch_remark, 
+      tch.locked as tch_locked, tch.orders as tch_orders, tch.ctime as tch_ctime
+    </if>
+  </sql>
+  <select id="selectByExample" parameterType="com.xt.feedback.dao.model.FbTeacherDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fb_teacher tch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fb_teacher tch
+    where tch.teacher_id = #{teacherId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fb_teacher
+    where teacher_id = #{teacherId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xt.feedback.dao.model.FbTeacherDOExample">
+    delete tch from fb_teacher tch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xt.feedback.dao.model.FbTeacherDO">
+    <selectKey keyProperty="teacherId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fb_teacher (job_number, tch_name, age, 
+      degree, title, grad_university, 
+      grad_major, experience, entry_date, 
+      political_affiliation, department, native_place, 
+      nation, remark, locked, 
+      orders, ctime)
+    values (#{jobNumber,jdbcType=VARCHAR}, #{tchName,jdbcType=VARCHAR}, #{age,jdbcType=TINYINT}, 
+      #{degree,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{gradUniversity,jdbcType=VARCHAR}, 
+      #{gradMajor,jdbcType=VARCHAR}, #{experience,jdbcType=VARCHAR}, #{entryDate,jdbcType=DATE}, 
+      #{politicalAffiliation,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{locked,jdbcType=TINYINT}, 
+      #{orders,jdbcType=BIGINT}, #{ctime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.feedback.dao.model.FbTeacherDO">
+    <selectKey keyProperty="teacherId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into fb_teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jobNumber != null">
+        job_number,
+      </if>
+      <if test="tchName != null">
+        tch_name,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="degree != null">
+        degree,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="gradUniversity != null">
+        grad_university,
+      </if>
+      <if test="gradMajor != null">
+        grad_major,
+      </if>
+      <if test="experience != null">
+        experience,
+      </if>
+      <if test="entryDate != null">
+        entry_date,
+      </if>
+      <if test="politicalAffiliation != null">
+        political_affiliation,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="nativePlace != null">
+        native_place,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="locked != null">
+        locked,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jobNumber != null">
+        #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tchName != null">
+        #{tchName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=TINYINT},
+      </if>
+      <if test="degree != null">
+        #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="gradUniversity != null">
+        #{gradUniversity,jdbcType=VARCHAR},
+      </if>
+      <if test="gradMajor != null">
+        #{gradMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        #{entryDate,jdbcType=DATE},
+      </if>
+      <if test="politicalAffiliation != null">
+        #{politicalAffiliation,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null">
+        #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=TINYINT},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xt.feedback.dao.model.FbTeacherDOExample" resultType="java.lang.Long">
+    select count(*) from fb_teacher tch
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update fb_teacher tch
+    <set>
+      <if test="record.teacherId != null">
+        tch.teacher_id = #{record.teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.jobNumber != null">
+        tch.job_number = #{record.jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tchName != null">
+        tch.tch_name = #{record.tchName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.age != null">
+        tch.age = #{record.age,jdbcType=TINYINT},
+      </if>
+      <if test="record.degree != null">
+        tch.degree = #{record.degree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        tch.title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gradUniversity != null">
+        tch.grad_university = #{record.gradUniversity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gradMajor != null">
+        tch.grad_major = #{record.gradMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.experience != null">
+        tch.experience = #{record.experience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entryDate != null">
+        tch.entry_date = #{record.entryDate,jdbcType=DATE},
+      </if>
+      <if test="record.politicalAffiliation != null">
+        tch.political_affiliation = #{record.politicalAffiliation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.department != null">
+        tch.department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nativePlace != null">
+        tch.native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null">
+        tch.nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        tch.remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locked != null">
+        tch.locked = #{record.locked,jdbcType=TINYINT},
+      </if>
+      <if test="record.orders != null">
+        tch.orders = #{record.orders,jdbcType=BIGINT},
+      </if>
+      <if test="record.ctime != null">
+        tch.ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update fb_teacher tch
+    set tch.teacher_id = #{record.teacherId,jdbcType=INTEGER},
+      tch.job_number = #{record.jobNumber,jdbcType=VARCHAR},
+      tch.tch_name = #{record.tchName,jdbcType=VARCHAR},
+      tch.age = #{record.age,jdbcType=TINYINT},
+      tch.degree = #{record.degree,jdbcType=VARCHAR},
+      tch.title = #{record.title,jdbcType=VARCHAR},
+      tch.grad_university = #{record.gradUniversity,jdbcType=VARCHAR},
+      tch.grad_major = #{record.gradMajor,jdbcType=VARCHAR},
+      tch.experience = #{record.experience,jdbcType=VARCHAR},
+      tch.entry_date = #{record.entryDate,jdbcType=DATE},
+      tch.political_affiliation = #{record.politicalAffiliation,jdbcType=VARCHAR},
+      tch.department = #{record.department,jdbcType=VARCHAR},
+      tch.native_place = #{record.nativePlace,jdbcType=VARCHAR},
+      tch.nation = #{record.nation,jdbcType=VARCHAR},
+      tch.remark = #{record.remark,jdbcType=VARCHAR},
+      tch.locked = #{record.locked,jdbcType=TINYINT},
+      tch.orders = #{record.orders,jdbcType=BIGINT},
+      tch.ctime = #{record.ctime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.feedback.dao.model.FbTeacherDO">
+    update fb_teacher
+    <set>
+      <if test="jobNumber != null">
+        job_number = #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tchName != null">
+        tch_name = #{tchName,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=TINYINT},
+      </if>
+      <if test="degree != null">
+        degree = #{degree,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="gradUniversity != null">
+        grad_university = #{gradUniversity,jdbcType=VARCHAR},
+      </if>
+      <if test="gradMajor != null">
+        grad_major = #{gradMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="experience != null">
+        experience = #{experience,jdbcType=VARCHAR},
+      </if>
+      <if test="entryDate != null">
+        entry_date = #{entryDate,jdbcType=DATE},
+      </if>
+      <if test="politicalAffiliation != null">
+        political_affiliation = #{politicalAffiliation,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="nativePlace != null">
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=TINYINT},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where teacher_id = #{teacherId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.feedback.dao.model.FbTeacherDO">
+    update fb_teacher
+    set job_number = #{jobNumber,jdbcType=VARCHAR},
+      tch_name = #{tchName,jdbcType=VARCHAR},
+      age = #{age,jdbcType=TINYINT},
+      degree = #{degree,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      grad_university = #{gradUniversity,jdbcType=VARCHAR},
+      grad_major = #{gradMajor,jdbcType=VARCHAR},
+      experience = #{experience,jdbcType=VARCHAR},
+      entry_date = #{entryDate,jdbcType=DATE},
+      political_affiliation = #{politicalAffiliation,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      native_place = #{nativePlace,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      locked = #{locked,jdbcType=TINYINT},
+      orders = #{orders,jdbcType=BIGINT},
+      ctime = #{ctime,jdbcType=BIGINT}
+    where teacher_id = #{teacherId,jdbcType=INTEGER}
+  </update>
+  <sql id="All_Column_List">
+    tch.teacher_id as tch_teacher_id, tch.job_number as tch_job_number, tch.tch_name as tch_tch_name, 
+    tch.age as tch_age, tch.degree as tch_degree, tch.title as tch_title, tch.grad_university as tch_grad_university, 
+    tch.grad_major as tch_grad_major, tch.experience as tch_experience, tch.entry_date as tch_entry_date, 
+    tch.political_affiliation as tch_political_affiliation, tch.department as tch_department, 
+    tch.native_place as tch_native_place, tch.nation as tch_nation, tch.remark as tch_remark, 
+    tch.locked as tch_locked, tch.orders as tch_orders, tch.ctime as tch_ctime
+  </sql>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>

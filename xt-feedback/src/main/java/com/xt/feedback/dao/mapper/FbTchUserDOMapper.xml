@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.feedback.dao.mapper.FbTchUserDOMapper">
+  <resultMap id="BaseResultMap" type="com.xt.feedback.dao.model.FbTchUserDO">
+    <id column="tch_user_id" jdbcType="INTEGER" property="tchUserId" />
+    <result column="teacher_id" jdbcType="INTEGER" property="teacherId" />
+    <result column="uname" jdbcType="VARCHAR" property="uname" />
+    <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="last_ip" jdbcType="VARCHAR" property="lastIp" />
+    <result column="orders" jdbcType="BIGINT" property="orders" />
+    <result column="ctime" jdbcType="BIGINT" property="ctime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <if test="resultColumns != null">
+      <foreach collection="resultColumns.columns" item="item" separator=",">
+        null.${item} as null_${item}
+      </foreach>
+    </if>
+    <if test="resultColumns == null">
+      tch_user_id, teacher_id, uname, passwd, last_time, last_ip, orders, ctime
+    </if>
+  </sql>
+  <select id="selectByExample" parameterType="com.xt.feedback.dao.model.FbTchUserDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fb_tch_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fb_tch_user
+    where tch_user_id = #{tchUserId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fb_tch_user
+    where tch_user_id = #{tchUserId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xt.feedback.dao.model.FbTchUserDOExample">
+    delete null from fb_tch_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xt.feedback.dao.model.FbTchUserDO">
+    insert into fb_tch_user (tch_user_id, teacher_id, uname, 
+      passwd, last_time, last_ip, 
+      orders, ctime)
+    values (#{tchUserId,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, 
+      #{passwd,jdbcType=VARCHAR}, #{lastTime,jdbcType=TIMESTAMP}, #{lastIp,jdbcType=VARCHAR}, 
+      #{orders,jdbcType=BIGINT}, #{ctime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.feedback.dao.model.FbTchUserDO">
+    insert into fb_tch_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tchUserId != null">
+        tch_user_id,
+      </if>
+      <if test="teacherId != null">
+        teacher_id,
+      </if>
+      <if test="uname != null">
+        uname,
+      </if>
+      <if test="passwd != null">
+        passwd,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
+      <if test="lastIp != null">
+        last_ip,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tchUserId != null">
+        #{tchUserId,jdbcType=INTEGER},
+      </if>
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIp != null">
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xt.feedback.dao.model.FbTchUserDOExample" resultType="java.lang.Long">
+    select count(*) from fb_tch_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update fb_tch_user
+    <set>
+      <if test="record.tchUserId != null">
+        tch_user_id = #{record.tchUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.teacherId != null">
+        teacher_id = #{record.teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.uname != null">
+        uname = #{record.uname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwd != null">
+        passwd = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastTime != null">
+        last_time = #{record.lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastIp != null">
+        last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders != null">
+        orders = #{record.orders,jdbcType=BIGINT},
+      </if>
+      <if test="record.ctime != null">
+        ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update fb_tch_user
+    set tch_user_id = #{record.tchUserId,jdbcType=INTEGER},
+      teacher_id = #{record.teacherId,jdbcType=INTEGER},
+      uname = #{record.uname,jdbcType=VARCHAR},
+      passwd = #{record.passwd,jdbcType=VARCHAR},
+      last_time = #{record.lastTime,jdbcType=TIMESTAMP},
+      last_ip = #{record.lastIp,jdbcType=VARCHAR},
+      orders = #{record.orders,jdbcType=BIGINT},
+      ctime = #{record.ctime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.feedback.dao.model.FbTchUserDO">
+    update fb_tch_user
+    <set>
+      <if test="teacherId != null">
+        teacher_id = #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null">
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null">
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastIp != null">
+        last_ip = #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where tch_user_id = #{tchUserId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.feedback.dao.model.FbTchUserDO">
+    update fb_tch_user
+    set teacher_id = #{teacherId,jdbcType=INTEGER},
+      uname = #{uname,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      last_time = #{lastTime,jdbcType=TIMESTAMP},
+      last_ip = #{lastIp,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=BIGINT},
+      ctime = #{ctime,jdbcType=BIGINT}
+    where tch_user_id = #{tchUserId,jdbcType=INTEGER}
+  </update>
+  <sql id="All_Column_List">
+    tch_user_id, teacher_id, uname, passwd, last_time, last_ip, orders, ctime
+  </sql>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>

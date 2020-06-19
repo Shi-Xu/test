@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<header class="topbar-nav">
+				<nav class="navbar navbar-expand fixed-top"  th:fragment="header">
+					<!-- 左侧缩进 -->
+					<ul class="navbar-nav mr-auto align-items-center">
+						<li class="nav-item">
+							<a class="nav-link toggle-menu" href="javascript:void();">
+								<i class="icon-menu menu-icon"></i>
+							</a>
+						</li>
+					</ul>
+
+					<ul class="navbar-nav align-items-center right-nav-link">
+						<li class="nav-item">
+							<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+								<span class="user-profile"><i class=" fa fa-user text-warning"></i></span>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-right">
+								<li class="dropdown-item"> <a href="teacher/auth/loginout"><i class="icon-drop mr-2"></i> 修改密码</a></li>
+								<li class="dropdown-item"> <a href="teacher/auth/loginout"><i class="icon-power mr-2"></i> 注销</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</header>
+</body>
+</html>

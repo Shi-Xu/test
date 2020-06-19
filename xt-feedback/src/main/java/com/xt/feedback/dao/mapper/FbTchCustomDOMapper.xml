@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.feedback.dao.mapper.FbTchCustomDOMapper">
+  <resultMap id="BaseResultMap" type="com.xt.feedback.dao.model.FbTchCustomDO">
+    <id column="fb_tch_custom" jdbcType="INTEGER" property="fbTchCustom" />
+    <result column="single" jdbcType="VARCHAR" property="single" />
+    <result column="mutiple" jdbcType="VARCHAR" property="mutiple" />
+    <result column="fb_teacher_id" jdbcType="INTEGER" property="fbTeacherId" />
+    <result column="fb_tch_id" jdbcType="INTEGER" property="fbTchId" />
+    <result column="coures_order" jdbcType="VARCHAR" property="couresOrder" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <if test="resultColumns != null">
+      <foreach collection="resultColumns.columns" item="item" separator=",">
+        null.${item} as null_${item}
+      </foreach>
+    </if>
+    <if test="resultColumns == null">
+      fb_tch_custom, single, mutiple, fb_teacher_id, fb_tch_id, coures_order
+    </if>
+  </sql>
+  <select id="selectByExample" parameterType="com.xt.feedback.dao.model.FbTchCustomDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fb_tch_custom
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fb_tch_custom
+    where fb_tch_custom = #{fbTchCustom,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fb_tch_custom
+    where fb_tch_custom = #{fbTchCustom,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xt.feedback.dao.model.FbTchCustomDOExample">
+    delete null from fb_tch_custom
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xt.feedback.dao.model.FbTchCustomDO">
+    insert into fb_tch_custom (fb_tch_custom, single, mutiple, 
+      fb_teacher_id, fb_tch_id, coures_order
+      )
+    values (#{fbTchCustom,jdbcType=INTEGER}, #{single,jdbcType=VARCHAR}, #{mutiple,jdbcType=VARCHAR}, 
+      #{fbTeacherId,jdbcType=INTEGER}, #{fbTchId,jdbcType=INTEGER}, #{couresOrder,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.feedback.dao.model.FbTchCustomDO">
+    insert into fb_tch_custom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fbTchCustom != null">
+        fb_tch_custom,
+      </if>
+      <if test="single != null">
+        single,
+      </if>
+      <if test="mutiple != null">
+        mutiple,
+      </if>
+      <if test="fbTeacherId != null">
+        fb_teacher_id,
+      </if>
+      <if test="fbTchId != null">
+        fb_tch_id,
+      </if>
+      <if test="couresOrder != null">
+        coures_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fbTchCustom != null">
+        #{fbTchCustom,jdbcType=INTEGER},
+      </if>
+      <if test="single != null">
+        #{single,jdbcType=VARCHAR},
+      </if>
+      <if test="mutiple != null">
+        #{mutiple,jdbcType=VARCHAR},
+      </if>
+      <if test="fbTeacherId != null">
+        #{fbTeacherId,jdbcType=INTEGER},
+      </if>
+      <if test="fbTchId != null">
+        #{fbTchId,jdbcType=INTEGER},
+      </if>
+      <if test="couresOrder != null">
+        #{couresOrder,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xt.feedback.dao.model.FbTchCustomDOExample" resultType="java.lang.Long">
+    select count(*) from fb_tch_custom
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update fb_tch_custom
+    <set>
+      <if test="record.fbTchCustom != null">
+        fb_tch_custom = #{record.fbTchCustom,jdbcType=INTEGER},
+      </if>
+      <if test="record.single != null">
+        single = #{record.single,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mutiple != null">
+        mutiple = #{record.mutiple,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbTeacherId != null">
+        fb_teacher_id = #{record.fbTeacherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fbTchId != null">
+        fb_tch_id = #{record.fbTchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.couresOrder != null">
+        coures_order = #{record.couresOrder,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update fb_tch_custom
+    set fb_tch_custom = #{record.fbTchCustom,jdbcType=INTEGER},
+      single = #{record.single,jdbcType=VARCHAR},
+      mutiple = #{record.mutiple,jdbcType=VARCHAR},
+      fb_teacher_id = #{record.fbTeacherId,jdbcType=INTEGER},
+      fb_tch_id = #{record.fbTchId,jdbcType=INTEGER},
+      coures_order = #{record.couresOrder,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.feedback.dao.model.FbTchCustomDO">
+    update fb_tch_custom
+    <set>
+      <if test="single != null">
+        single = #{single,jdbcType=VARCHAR},
+      </if>
+      <if test="mutiple != null">
+        mutiple = #{mutiple,jdbcType=VARCHAR},
+      </if>
+      <if test="fbTeacherId != null">
+        fb_teacher_id = #{fbTeacherId,jdbcType=INTEGER},
+      </if>
+      <if test="fbTchId != null">
+        fb_tch_id = #{fbTchId,jdbcType=INTEGER},
+      </if>
+      <if test="couresOrder != null">
+        coures_order = #{couresOrder,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fb_tch_custom = #{fbTchCustom,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.feedback.dao.model.FbTchCustomDO">
+    update fb_tch_custom
+    set single = #{single,jdbcType=VARCHAR},
+      mutiple = #{mutiple,jdbcType=VARCHAR},
+      fb_teacher_id = #{fbTeacherId,jdbcType=INTEGER},
+      fb_tch_id = #{fbTchId,jdbcType=INTEGER},
+      coures_order = #{couresOrder,jdbcType=VARCHAR}
+    where fb_tch_custom = #{fbTchCustom,jdbcType=INTEGER}
+  </update>
+  <sql id="All_Column_List">
+    fb_tch_custom, single, mutiple, fb_teacher_id, fb_tch_id, coures_order
+  </sql>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>

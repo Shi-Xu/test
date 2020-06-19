@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.feedback.dao.mapper.FbQtypeDOMapper">
+  <resultMap id="BaseResultMap" type="com.xt.feedback.dao.model.FbQtypeDO">
+    <id column="qtype_id" jdbcType="TINYINT" property="qtypeId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <if test="resultColumns != null">
+      <foreach collection="resultColumns.columns" item="item" separator=",">
+        null.${item} as null_${item}
+      </foreach>
+    </if>
+    <if test="resultColumns == null">
+      qtype_id, name
+    </if>
+  </sql>
+  <select id="selectByExample" parameterType="com.xt.feedback.dao.model.FbQtypeDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fb_qtype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fb_qtype
+    where qtype_id = #{qtypeId,jdbcType=TINYINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte">
+    delete from fb_qtype
+    where qtype_id = #{qtypeId,jdbcType=TINYINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xt.feedback.dao.model.FbQtypeDOExample">
+    delete null from fb_qtype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xt.feedback.dao.model.FbQtypeDO">
+    insert into fb_qtype (qtype_id, name)
+    values (#{qtypeId,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.feedback.dao.model.FbQtypeDO">
+    insert into fb_qtype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="qtypeId != null">
+        qtype_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="qtypeId != null">
+        #{qtypeId,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xt.feedback.dao.model.FbQtypeDOExample" resultType="java.lang.Long">
+    select count(*) from fb_qtype
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update fb_qtype
+    <set>
+      <if test="record.qtypeId != null">
+        qtype_id = #{record.qtypeId,jdbcType=TINYINT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update fb_qtype
+    set qtype_id = #{record.qtypeId,jdbcType=TINYINT},
+      name = #{record.name,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.feedback.dao.model.FbQtypeDO">
+    update fb_qtype
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where qtype_id = #{qtypeId,jdbcType=TINYINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.feedback.dao.model.FbQtypeDO">
+    update fb_qtype
+    set name = #{name,jdbcType=VARCHAR}
+    where qtype_id = #{qtypeId,jdbcType=TINYINT}
+  </update>
+  <sql id="All_Column_List">
+    qtype_id, name
+  </sql>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div id="sidebar-wrapper" data-simplebar=""
+     data-simplebar-auto-hide="true" th:fragment="left-menu">
+    <div class="brand-logo bg-bar">
+        <a href="teacher/index">
+            <h5 class="logo-text">课程调查管理系统</h5>
+        </a>
+    </div>
+    <!-- 用户信息 -->
+    <div class="user-details">
+        <div class="media align-items-center user-pointer collapsed"
+             data-toggle="collapse" data-target="#user-dropdown">
+            <div class="avatar">
+                <i class="fa fa-user fa-2x mr-3 text-"></i>
+            </div>
+            <div class="media-body">
+                <h6 class="side-user-name" th:text="${session.userSession.uname}">登录状态异常</h6>
+            </div>
+        </div>
+        <div id="user-dropdown" class="collapse">
+            <ul class="user-setting-menu">
+                <li><a href="teacher/resetPWD"><i class="icon-drop"></i>
+                    修改密码</a></li>
+                <li><a href="teacher/auth/loginout"><i class="icon-power"></i>
+                    注销</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 用户信息结束 -->
+    <ul class="sidebar-menu do-nicescrol">
+        <li class="sidebar-header">教师课程管理</li>
+        <li>
+            <a href="teacher/index" class="waves-effect">
+            <i class="zmdi zmdi-view-dashboard"></i>
+            <span>课程选择</span>
+            <i class="fa fa-angle-left pull-right"></i>
+            </a>
+        </li>
+        <!--<li>
+            <a href="teacher/custom/query" class="waves-effect">
+                <i class="zmdi zmdi-view-dashboard"></i>
+                <span>新建问卷</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+        </li>-->
+    </ul>
+</div>
+</body>
+</html>

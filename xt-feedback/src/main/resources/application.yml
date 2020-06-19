@@ -1,0 +1,20 @@
+
+server:
+  servlet.context-path: /course-feedback
+  port: 8080
+ 
+spring:
+    datasource:
+        name: masterDataSource
+        url: jdbc:mysql://localhost:3306/xt_feedback?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+        username: root
+        password: 1204
+        driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+   level:
+     com.xt.feedback.dao.mapper : debug
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:com/xt/feedback/dao/mapper/*.xml
+

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="@{/}">
+    <script type="text/javascript" th:inline="javascript">
+        var baseUrl=[[@{/}]];
+    </script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>教师课程管理</title>
+    <!--favicon-->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="assets/css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Sidebar CSS-->
+    <link href="assets/css/sidebar-menu.css" rel="stylesheet" />
+    <!-- Custom Style-->
+    <link href="assets/css/app-style.css" rel="stylesheet" />
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+
+</head>
+
+<body>
+
+<!-- start loader -->
+<div id="pageloader-overlay" class="visible incoming">
+    <div class="loader-wrapper-outer">
+        <div class="loader-wrapper-inner">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+<!-- end loader -->
+
+<!-- Start wrapper-->
+<div id="wrapper">
+
+    <!--侧边栏开始-->
+    <div  th:replace="/teacher/left-menu :: left-menu"></div>
+    <!--侧边栏结束-->
+
+    <!--顶部头开始-->
+    <div  th:replace="/teacher/header :: header"></div>
+    <!--顶部头结束-->
+
+    <div class="clearfix"></div>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- 导航说明栏开始 -->
+            <div class="row pt-2 pb-2 mb-2">
+                <div class="col-sm-9">
+                    <h4 class="page-title">自定义调查问卷</h4>
+                </div>
+            </div>
+            <!-- 导航说明栏结束 -->
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 col-md-12">
+                    <div class="card">
+                        <div class="card-body bg-error">
+                            <section class="faq-style-one faq-page">
+                                <div class="thm-container">
+                                    <div class="title">
+                                        <h3>请在方框内输入问题</h3>
+                                    </div>
+                                   <!-- <div class="title">
+                                        <h3 th:text="${result?.data.teachingDTO.course}+'('+${result?.data.teachingDTO.courseNoAndOrder}+')-'+${result?.data.teachingDTO.tchName}+' 老师'">数据错误</h3>
+                                    </div>-->
+                                    <form> <!--method="post"-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="single-faq-style-one">
+
+                                                    <h3>一. 必选题（10道）</h3>
+                                                    <ol>
+
+                                                        <li data-uuid="2e896a61-0ecd-11ea-9006-00fffe3009cc" data-type="single" id="accordion1">
+                                                            <p><span><input type="text" class="sinTitle"></span></p>
+                                                            <div class="form-item">
+                                                                <div class="input-block">
+                                                                    <div class="radio-inline icheck-primary radio-screen" id="btnSin2"><input type="radio" name="single2" value="A" id="extremely1" class="optionAnswer" ><label for="extremely2"><input type="text" class="sinOption"></label></div>
+                                                                    <div class="radio-inline icheck-primary radio-screen">
+                                                                        <input type="radio" name="single2" value="B" id="basically1" class="optionAnswer">
+                                                                        <label for="basically2"><input type="text" class="sinOption"></label>
+                                                                    </div>
+                                                                    <button class="icon-drop" value="新建" id="addOptSingle">新建</button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+
+
+
+                                                        <li data-uuid="2e896a61-0ecd-11ea-9006-00fffe3009cc" data-type="single" id="accordion2" hidden>
+                                                            <p><span><input type="text" class="sinTitle"></span></p>
+                                                            <div class="form-item">
+                                                                <div class="input-block">
+                                                                    <div class="radio-inline icheck-primary radio-screen">
+                                                                        <input type="radio" name="single2" value="A" id="extremely2" class="optionAnswer" >
+                                                                        <label for="extremely2"><input type="text" class="sinOption"></label>
+                                                                    </div>
+                                                                    <div class="radio-inline icheck-primary radio-screen">
+                                                                        <input type="radio" name="single2" value="B" id="basically2" class="optionAnswer">
+                                                                        <label for="basically2"><input type="text" class="sinOption"></label>
+                                                                    </div>
+                                                                    <div class="radio-inline icheck-primary radio-screen">
+                                                                        <input type="radio" name="single2" value="C" id="normally2" class="optionAnswer">
+                                                                        <label for="normally2"><input type="text" class="sinOption"></label>
+                                                                    </div>
+                                                                    <div class="radio-inline icheck-primary radio-screen">
+                                                                        <input type="radio" name="single2" value="D" id="basically-not2" class="optionAnswer">
+                                                                        <label for="normally2"><input type="text" class="sinOption"></label>
+                                                                    </div>
+                                                                    <div class="radio-inline icheck-primary radio-screen">
+                                                                        <input type="radio" name="single2" value="E" id="extremely not2" class="optionAnswer">
+                                                                        <label for="normally2"><input type="text" class="sinOption"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <button class="icon-drop" value="新建" id="addSingle">新建</button>
+                                                    </ol>
+                                                </div><!-- /.single-faq-style-one -->
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-faq-style-one">
+                                                    <i class="fa fa-question"></i>
+                                                    <h3>二. 以下为任选题（每一大项可以多选，在所选项打√）</h3>
+                                                    <ul>
+                                                        <li data-uuid="c091b5d3-0ecf-11ea-9006-00fffe3009cc" data-type="multiple">
+                                                            <p>A. <input type="text" class="MulTitle"> </p>
+                                                            <div class="form-item">
+                                                                <div class="input-block">
+                                                                    <div class=" icheck-primary">
+                                                                        <input type="checkbox" name="multiple1" value="1" id="A1" >
+                                                                        <label for="A1">A.1 <input type="text"></label>
+                                                                    </div>
+                                                                    <div class=" icheck-primary">
+                                                                        <input type="checkbox" name="multiple1" value="2" id="A2">
+                                                                        <label for="A2">A.2 <input type="text"></label>
+                                                                    </div>
+                                                                    <div class=" icheck-primary">
+                                                                        <input type="checkbox" name="multiple1" value="3" id="A3">
+                                                                        <label for="A3">A.3 <input type="text"></label>
+                                                                    </div>
+                                                                    <div class=" icheck-primary">
+                                                                        <input type="checkbox" name="multiple1" value="4" id="A4">
+                                                                        <label for="A4">A.4 <input type="text"></label>
+                                                                    </div>
+                                                                    <div class=" icheck-primary">
+                                                                        <input type="checkbox" name="multiple1" value="5" id="A5">
+                                                                        <label for="A5">A.5 <input type="text"></label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <button type="button" id="submit" >确认新建问卷</button>
+                                        <button type="button" class="swal-button--cancel" id="cancel" value="取消">取消</button>
+                                    </form>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End container-fluid-->
+
+    </div>
+    <!--End content-wrapper-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+    <!--Start footer-->
+    <div  th:replace="/teacher/footer :: footer"></div>
+    <!--End footer-->
+
+
+</div>
+<!--End wrapper-->
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets/plugins/simplebar/js/simplebar.js"></script>
+<!-- sidebar-menu js -->
+<script src="assets/js/sidebar-menu.js"></script>
+
+<!-- Custom scripts -->
+<script src="script/custom-submit.js"></script>
+<script src="assets/js/app-script.js"></script>
+<script type="text/javascript"></script>
+<script src="js/jquery.js"></script>
+
+
+
+
+</body>
+</html>

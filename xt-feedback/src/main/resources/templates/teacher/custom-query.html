@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="@{/}">
+    <script type="text/javascript" th:inline="javascript">
+        var baseUrl=[[@{/}]];
+    </script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>教师课程管理</title>
+    <!--favicon-->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS-->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="assets/css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Sidebar CSS-->
+    <link href="assets/css/sidebar-menu.css" rel="stylesheet" />
+    <!-- Custom Style-->
+    <link href="assets/css/app-style.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+<!-- start loader -->
+<div id="pageloader-overlay" class="visible incoming">
+    <div class="loader-wrapper-outer">
+        <div class="loader-wrapper-inner">
+            <div class="loader"></div>
+        </div>
+    </div>
+</div>
+<!-- end loader -->
+
+<!-- Start wrapper-->
+<div id="wrapper">
+
+    <!--侧边栏开始-->
+    <div  th:replace="/teacher/left-menu :: left-menu"></div>
+    <!--侧边栏结束-->
+
+    <!--顶部头开始-->
+    <div  th:replace="/teacher/header :: header"></div>
+    <!--顶部头结束-->
+
+    <div class="clearfix"></div>
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <!-- 导航说明栏开始 -->
+            <div class="row pt-2 pb-2 mb-2">
+                <div class="col-sm-9">
+                    <h4 class="page-title">课程调查反馈</h4>
+                </div>
+            </div>
+            <!-- 导航说明栏结束 -->
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 col-md-12">
+                    <div class="card">
+                        <div class="card-body bg-error">
+                            <div class="title">
+                                <h3>请选择您要新建的课程</h3>
+                            </div>
+                            <div class="teacher-select">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-3 offset-lg-1 form-group">
+                                            <label>学年</label>
+                                            <select class="form-control single-select" id="year">
+                                                <option value="">请选择</option>
+                                                <option selected="selected">2019-2020学年</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 form-group">
+                                            <label>学期</label>
+                                            <select class="form-control single-select" id="term">
+                                                <option value="">请选择</option>
+                                                <option value="2">春季学期</option>
+                                                <option value="1" selected="selected">秋季学期</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3 form-group">
+                                            <label>专业</label>
+                                            <select class="form-control single-select" id="major">
+                                                <option value="">请选择</option>
+                                                <option value="电子">电子信息工程</option>
+                                                <option value="通信">通信工程</option>
+                                                <option value="物联">物联网工程</option>
+                                                <option value="中兴">中兴</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-1">
+                                            <button type="button" class=" btn bg-bar1 select-button" id="submit">查询</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-lg-6 offset-lg-3 col-md-12">
+                                <div class="card mt-3 shadow-none">
+                                    <div class="list-group-item bg-bar1"><span class="float-right">查看查询结果</span>我的课程问卷</div>
+                                    <div class="list-group shadow-none" id="course-list">
+                                        <a href="javascript:void(0)" class="list-group-item"><span class="icon-eyeglass icons float-right"></span>未查询到课程信息</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End container-fluid-->
+
+    </div>
+    <!--End content-wrapper-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+    <!--Start footer-->
+    <div  th:replace="/teacher/footer :: footer"></div>
+    <!--End footer-->
+
+
+</div>
+<!--End wrapper-->
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+
+<!-- simplebar js -->
+<script src="assets/plugins/simplebar/js/simplebar.js"></script>
+<!-- sidebar-menu js -->
+<script src="assets/js/sidebar-menu.js"></script>
+
+<!-- Custom scripts -->
+<script src="assets/js/app-script.js"></script>
+<script src="script/custom-query.js"></script>
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

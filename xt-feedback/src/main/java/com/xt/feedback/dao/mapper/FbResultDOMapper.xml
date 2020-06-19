@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.feedback.dao.mapper.FbResultDOMapper">
+  <resultMap id="BaseResultMap" type="com.xt.feedback.dao.model.FbResultDO">
+    <id column="rs_r_id" jdbcType="INTEGER" property="rId" />
+    <result column="rs_tch_qu_id" jdbcType="INTEGER" property="tchQuId" />
+    <result column="rs_fix_result" jdbcType="VARCHAR" property="fixResult" />
+    <result column="rs_free_result" jdbcType="VARCHAR" property="freeResult" />
+    <result column="rs_ip" jdbcType="VARCHAR" property="ip" />
+    <result column="rs_orders" jdbcType="BIGINT" property="orders" />
+    <result column="rs_ctime" jdbcType="BIGINT" property="ctime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <if test="resultColumns != null">
+      <foreach collection="resultColumns.columns" item="item" separator=",">
+        rs.${item} as rs_${item}
+      </foreach>
+    </if>
+    <if test="resultColumns == null">
+      rs.r_id as rs_r_id, rs.tch_qu_id as rs_tch_qu_id, rs.fix_result as rs_fix_result, 
+      rs.free_result as rs_free_result, rs.ip as rs_ip, rs.orders as rs_orders, rs.ctime as rs_ctime
+    </if>
+  </sql>
+  <select id="selectByExample" parameterType="com.xt.feedback.dao.model.FbResultDOExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fb_result rs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fb_result rs
+    where rs.r_id = #{rId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fb_result
+    where r_id = #{rId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xt.feedback.dao.model.FbResultDOExample">
+    delete rs from fb_result rs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xt.feedback.dao.model.FbResultDO">
+    insert into fb_result (r_id, tch_qu_id, fix_result, 
+      free_result, ip, orders, 
+      ctime)
+    values (#{rId,jdbcType=INTEGER}, #{tchQuId,jdbcType=INTEGER}, #{fixResult,jdbcType=VARCHAR}, 
+      #{freeResult,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{orders,jdbcType=BIGINT}, 
+      #{ctime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.feedback.dao.model.FbResultDO">
+    insert into fb_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rId != null">
+        r_id,
+      </if>
+      <if test="tchQuId != null">
+        tch_qu_id,
+      </if>
+      <if test="fixResult != null">
+        fix_result,
+      </if>
+      <if test="freeResult != null">
+        free_result,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+      <if test="ctime != null">
+        ctime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rId != null">
+        #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="tchQuId != null">
+        #{tchQuId,jdbcType=INTEGER},
+      </if>
+      <if test="fixResult != null">
+        #{fixResult,jdbcType=VARCHAR},
+      </if>
+      <if test="freeResult != null">
+        #{freeResult,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="ctime != null">
+        #{ctime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xt.feedback.dao.model.FbResultDOExample" resultType="java.lang.Long">
+    select count(*) from fb_result rs
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update fb_result rs
+    <set>
+      <if test="record.rId != null">
+        rs.r_id = #{record.rId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tchQuId != null">
+        rs.tch_qu_id = #{record.tchQuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fixResult != null">
+        rs.fix_result = #{record.fixResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freeResult != null">
+        rs.free_result = #{record.freeResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ip != null">
+        rs.ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders != null">
+        rs.orders = #{record.orders,jdbcType=BIGINT},
+      </if>
+      <if test="record.ctime != null">
+        rs.ctime = #{record.ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update fb_result rs
+    set rs.r_id = #{record.rId,jdbcType=INTEGER},
+      rs.tch_qu_id = #{record.tchQuId,jdbcType=INTEGER},
+      rs.fix_result = #{record.fixResult,jdbcType=VARCHAR},
+      rs.free_result = #{record.freeResult,jdbcType=VARCHAR},
+      rs.ip = #{record.ip,jdbcType=VARCHAR},
+      rs.orders = #{record.orders,jdbcType=BIGINT},
+      rs.ctime = #{record.ctime,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.feedback.dao.model.FbResultDO">
+    update fb_result
+    <set>
+      <if test="tchQuId != null">
+        tch_qu_id = #{tchQuId,jdbcType=INTEGER},
+      </if>
+      <if test="fixResult != null">
+        fix_result = #{fixResult,jdbcType=VARCHAR},
+      </if>
+      <if test="freeResult != null">
+        free_result = #{freeResult,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null">
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="ctime != null">
+        ctime = #{ctime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.feedback.dao.model.FbResultDO">
+    update fb_result
+    set tch_qu_id = #{tchQuId,jdbcType=INTEGER},
+      fix_result = #{fixResult,jdbcType=VARCHAR},
+      free_result = #{freeResult,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=BIGINT},
+      ctime = #{ctime,jdbcType=BIGINT}
+    where r_id = #{rId,jdbcType=INTEGER}
+  </update>
+  <sql id="All_Column_List">
+    rs.r_id as rs_r_id, rs.tch_qu_id as rs_tch_qu_id, rs.fix_result as rs_fix_result, 
+    rs.free_result as rs_free_result, rs.ip as rs_ip, rs.orders as rs_orders, rs.ctime as rs_ctime
+  </sql>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>
